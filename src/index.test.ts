@@ -47,22 +47,27 @@ describe('sql', () => {
   });
 
   test('should fail with malformed query', async () => {
+    let query;
+
     try {
-      sql`SELECT * FROM ${null}`;
-      throw new YError('E_UNEXPECTED_SUCCESS');
+      query = sql`SELECT * FROM ${null}`;
+
+      if (query) {
+        throw new YError('E_UNEXPECTED_SUCCESS');
+      }
     } catch (err) {
       expect({
         errorCode: (err as YError).code,
         errorParams: (err as YError).params,
       }).toMatchInlineSnapshot(`
-        {
-          "errorCode": "E_INVALID_QUERY",
-          "errorParams": [
-            "SELECT * FROM NULL",
-            [Error: syntax error at or near "NULL"],
-          ],
-        }
-      `);
+{
+  "errorCode": "E_INVALID_QUERY",
+  "errorParams": [
+    "SELECT * FROM NULL",
+    [SqlError: syntax error at or near "NULL"],
+  ],
+}
+`);
     }
   });
 });

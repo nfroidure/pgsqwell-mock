@@ -9,7 +9,7 @@ import sql, {
   type SQLStatement,
 } from 'pgsqwell';
 import { YError } from 'yerror';
-import libpgquery from 'libpg-query';
+import { parseSync, loadModule } from 'libpg-query';
 
 export {
   sqlPart,
@@ -18,6 +18,8 @@ export {
   emptySQLPart,
   mergeSQLParts,
 };
+
+await loadModule();
 
 /* Architecture Note #2: Checking SQL syntax
 
@@ -31,7 +33,7 @@ export default function sqlMock<T extends SQLStringLiteralParameter[]>(
   const query = sql<T>(chunks, ...parameters);
   const builtQuery = buildQuery(query);
   try {
-    libpgquery.parseQuerySync(builtQuery);
+    parseSync(builtQuery);
   } catch (err) {
     throw new YError('E_INVALID_QUERY', builtQuery, err);
   }
