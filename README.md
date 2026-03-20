@@ -20,7 +20,20 @@ your queries.
 With Jest:
 
 ```ts
-jest.mock('pgsqwell', () => require('pgsqwell-mock'));
+// ES6 usage
+import main, * as all from 'pgsqwell-mock';
+
+jest.unstable_mockModule('pgsqwell', async () => {
+  return {
+    ...all,
+    default: main,
+  };
+});
+
+// Need to be dynamically imported for pgsqwell
+// to be properly mocked
+const { default: myTestedModule } = await import('./myTestedModule.js');
+
 ```
 
 [//]: # (::contents:end)
