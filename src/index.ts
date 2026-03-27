@@ -35,7 +35,7 @@ export default function sqlMock<T extends SQLStringLiteralParameter[]>(
   try {
     parseSync(builtQuery);
   } catch (err) {
-    throw new YError('E_INVALID_QUERY', builtQuery, err);
+    throw YError.wrap(err as Error, 'E_INVALID_QUERY', [builtQuery]);
   }
 
   return query;

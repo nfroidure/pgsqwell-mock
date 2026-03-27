@@ -58,16 +58,15 @@ describe('sql', () => {
     } catch (err) {
       expect({
         errorCode: (err as YError).code,
-        errorParams: (err as YError).params,
+        errorDebugValues: (err as YError).debugValues,
       }).toMatchInlineSnapshot(`
-{
-  "errorCode": "E_INVALID_QUERY",
-  "errorParams": [
-    "SELECT * FROM NULL",
-    [SqlError: syntax error at or near "NULL"],
-  ],
-}
-`);
+       {
+         "errorCode": "E_INVALID_QUERY",
+         "errorDebugValues": [
+           "SELECT * FROM NULL",
+         ],
+       }
+      `);
     }
   });
 });
