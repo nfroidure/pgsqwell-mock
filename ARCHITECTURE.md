@@ -15,5 +15,5 @@
 Its purpose it to ensure queries made with the `sql` tag are well
  formed while running your unit tests.
 
-[See in context](./src/index.ts#L24-L28)
+[See in context](./src/index.ts#L30-L34)
 

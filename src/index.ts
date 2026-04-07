@@ -11,6 +11,12 @@ import sql, {
 import { YError } from 'yerror';
 import { parseSync, loadModule } from 'libpg-query';
 
+declare module 'yerror' {
+  interface YErrorRegistry {
+    E_INVALID_QUERY: [builtQuery: string];
+  }
+}
+
 export {
   sqlPart,
   joinSQLValues,
