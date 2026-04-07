@@ -1,3 +1,5 @@
+## [3.0.1](github.com/nfroidure/pgsqwell-mock/compare/v3.0.0...v3.0.1) (2026-04-07)
+
 # [3.0.0](github.com/nfroidure/pgsqwell-mock/compare/v2.0.0...v3.0.0) (2026-03-27)
 
 
